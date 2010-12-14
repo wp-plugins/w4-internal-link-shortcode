@@ -1,6 +1,6 @@
 === Plugin Name ===
 Plugin Name: W4 Internal Link Shortcode
-Author: sajib1223, Shazzad Hossain Khan
+Contributors: sajib1223, Shazzad Hossain Khan
 Donate link: http://w4dev.com/
 Tags: links, shortcode, post, page, category
 Requires at least: 2.9
