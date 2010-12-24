@@ -32,7 +32,7 @@ Now, if you change your category base to cats, like http://example.com/cats/unca
 * name = default ''. (Name of the link item object. Ex: "Uncategorized" for category Uncategorized, "Hello world" for the post Hello world).
 * slug = default ''. (Slug of the link item object. Ex: "hello-world" for the post Hello world).
 * class = default 'w4ils_link'. (A HTML class for the link element "a").
-* before = default ''. (Put text or html element such as "<br />" or "<p>" before the link).
+* before = default ''. (Put text or html element before the link).
 * after = default ''. (Put text or html element after the link).
 
 
@@ -79,5 +79,5 @@ New attribute ("before" and "after") introduced for putting texts on before or a
 * name = default ''. (Name of the link item object. Ex: "Uncategorized" for category Uncategorized, "Hello world" for the post Hello world).
 * slug = default ''. (Slug of the link item object. Ex: "hello-world" for the post Hello world).
 * class = default 'w4ils_link'. (A HTML class for the link element "a").
-* before = default ''. (Put text or html element such as "<br />" or "<p>" before the link).
+* before = default ''. (Put text or html element before the link).
 * after = default ''. (Put text or html element after the link).
