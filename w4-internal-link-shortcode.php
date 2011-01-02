@@ -42,7 +42,8 @@ class W4ILS{
 							'text' 		=> '',
 							'class' 	=> 'w4ils_link',
 							'before' 	=> '',
-							'after' 	=> ''
+							'after' 	=> '',
+							'target'	=> false
 							);
 		//Parsing attributes from shortcode by wp method
 		$w4ils_attr = shortcode_parse_atts($matches[1]);
@@ -50,9 +51,9 @@ class W4ILS{
 		
 		//Supported link types
 		$w4ils_default_types = array(
-								'post' => array('p','post','posts','page','pages'),
-								'cat' => array('c','cat','cats','category'),
-								'author' => array('a','auth','aothor','author')
+								'post' => array('p','P','post','posts','page','pages'),
+								'cat' => array('c','C','cat','cats','category'),
+								'author' => array('a','A','auth','aothor','author')
 								);
 		$w4ils_all_types = array_merge($w4ils_default_types['post'], $w4ils_default_types['cat'], $w4ils_default_types['author']);
 		
@@ -66,19 +67,42 @@ class W4ILS{
 
 		if($name)
 			$name = stripslashes($name);
+		
+		//Link target
+		$w4ils_target_attrs = array('tr','Tr','tar','targat','_target','terget','openin','newpage');
+		if(!$target){
+			foreach($w4ils_target_attrs as $w4ils_target_attr){
+				if(isset($$w4ils_target_attr))
+					$target = $$w4ils_target_attr;
+			}
+		}
+		
+		
+		if(in_array( $target, array('p','parent', 'own', 'this', 'self', 'no')))
+			$target = '_parent';
+		
+		if(in_array( $target, array('b', 'blank', 'new', 'another', 'out', 'yes')))
+			$target = '_blank';
 
+		$w4ils_target_params = array('_blank', '_parent', '_self', '_top');
+		if($target == false || !in_array( $target,$w4ils_target_params))
+			$target = '_parent';
+
+		
+		
 		if(in_array($type, $w4ils_default_types['post'])){
 			if(!$w4post = $this->get_post_by_field($id, 'ID')){
 				//Get post/page by title
-				$w4post = $this->get_post_by_field($name);
+				$w4post = ($name)? $this->get_post_by_field($name): false;
 	
 				//Get post/page by name/slug
 				if(!$w4post)
-					$w4post = $this->get_post_by_field($slug, 'post_name');
+					$w4post = ($slug)? $this->get_post_by_field($slug, 'post_name'): false;
+				
+				if(!$w4post)
+					return false ;
 				
 				$id = $w4post->ID;
-				if(!get_post($id))
-					return false ;
 			}
 
 			$link = get_permalink($id);
@@ -92,15 +116,16 @@ class W4ILS{
 	
 			//Get category by name
 			if(!$cat->term_id)
-				$cat = get_term_by( 'name', $name, 'category' );
+				$cat = ($name)? get_term_by( 'name', $name, 'category' ):false;
 	
 			//Get category by slug
 			if(!$cat->term_id)
-				$cat = get_term_by( 'slug', $slug, 'category' );
+				$cat = ($slug)? get_term_by( 'slug', $slug, 'category' ):false;
 	
-				$id = $cat->term_id ;
-				if(!$id)
-					return false ;
+			if(!$cat)
+				return false ;
+
+			$id = $cat->term_id ;
 	
 			$link = get_category_link($id);
 			if(!$text)
@@ -110,15 +135,16 @@ class W4ILS{
 		if(in_array($type, $w4ils_default_types['author'])){
 			if(!get_userdata($id)){
 				//Get author by display name
-				$author = $this->get_author_by_field($name);
+				$author = ($name)? $this->get_author_by_field($name):false;
 				
 				//Get author by nicename
 				if($author)
-					$author = $this->get_author_by_field($slug, 'user_nicename');
+					$author = ($slug)? $this->get_author_by_field($slug, 'user_nicename'):false;
 	
-				$id = $author->ID;
-				if(!$id)
+				if(!$author)
 					return false ;
+				
+				$id = $author->ID;
 			}
 			$link = get_author_posts_url($id);
 
@@ -126,8 +152,10 @@ class W4ILS{
 				$text = get_the_author_meta('display_name', $id);
 		}
 		
+		//Link attributes
+		$attr = sprintf(__('class="%1$s" target="%2$s"'), $class, $target);
 		
-		$this->w4il = sprintf(__('<a class="%3$s" href="%1$s">%2$s</a>'), $link, $text, $class);
+		$this->w4il = sprintf(__('<a %3$s href="%1$s">%2$s</a>'), $link, $text, $attr);
 		if($before)
 			$this->w4il = $before.$this->w4il;
 		

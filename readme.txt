@@ -5,7 +5,7 @@ Donate link: http://w4dev.com/
 Tags: links, shortcode, post links, page links, category links, author links
 Requires at least: 2.9
 Tested up to: 3.0.3
-Stable tag: 1.1
+Stable tag: 1.2
 
 Wordpress plugin for putting internal links with shortcode..
 
@@ -14,8 +14,8 @@ Now you can easily embed your wordpress sites internal links (of post,page,categ
 
 
 = Upgrade Notice =
+* New attribute ("target") introduced in Version 1.2. "target" attribute is same as a HTML anchor link target.(Recommend by "Simon")
 * New attribute ("before" and "after") introduced in Version 1.1. These are for putting texts on before or after the link.
-* Added similar parameter for attributes "type". Like: you can use "p" for "post", "c" for "cat", "a" for "author" and few more..
 
 = Example: =
 
@@ -43,6 +43,22 @@ Now, if you change your category base to cats, like http://example.com/cats/unca
 * Secondly, it will find your given attribute(id,name,slug) for the link. By priority, it will look for the "id" first. if id not found,then it will look for the "name". And last it will look for the slug.Slug is pretty eiser than name,as it contains all small letter and no space. If the is a name "I love Wordpress",the slug should be for this "i-love-wordpress",there is some exception although.
 * Lastly, it will fletch the link based on the matched attribute and its parameter.
 
+
+= Similar attributes and parameters =
+Attributes:
+* "tr|Tr|tar|targat|_target|terget|openin|newpage" for target
+
+Parameters:
+* "p|P|post|posts|page|pages" for "post"
+* "c|C|cat|cats|category" for "cat"
+* "a|A|auth|aothor|author" for "author"
+* "p|parent|own|this|self|no" for target parameter "_parent"
+* "b|blank|new|another|out|yes" for target parameter "_blank"
+
+
+--We have added similar attributes and parameters to give you a result at least. Please try using appropriate attributes and parameters.--
+
+
 Please let us know if you are unable to use/manage this plugin or if you have some suggestions to improve this plugin.
 
 
@@ -64,6 +80,8 @@ New attribute ("before" and "after") introduced for putting texts on before or a
 
 
 == Upgrade Notice ==
+= 1.2 =
+New attribute ("target") introduced in Version 1.2. "target" attribute is same as a HTML anchor link target.(Recommend by "Simon")
 = 1.1 =
 New attribute ("before" and "after") introduced for putting texts on before or after the link.
 
@@ -81,3 +99,4 @@ New attribute ("before" and "after") introduced for putting texts on before or a
 * class = default 'w4ils_link'. (A HTML class for the link element "a").
 * before = default ''. (Put text or html element before the link).
 * after = default ''. (Put text or html element after the link).
+* target = default '_parent'. (Same as a HTML anchor link target).
