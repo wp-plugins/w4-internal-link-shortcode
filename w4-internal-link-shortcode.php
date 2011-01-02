@@ -3,14 +3,14 @@
 Plugin Name: W4 Internal Link Shortcode
 Plugin URI: http://w4dev.com/w4-plugin/w4-internal-link-shortcode/
 Description: Lets you embed links in a post/page/category description of any post,page,category and author url.
-Version: 1.1
+Version: 1.2
 Author: Shazzad Hossain Khan
 Author URI: http://w4dev.com/
 */
 define( 'W4ILS_DIR', plugin_dir_path(__FILE__)) ;
 define( 'W4ILS_URL', plugin_dir_url(__FILE__)) ;
 define( 'W4ILS_BASENAME', plugin_basename( __FILE__ )) ;
-define( 'W4ILS_VERSION', '1.1' ) ;
+define( 'W4ILS_VERSION', '1.2' ) ;
 define( 'W4ILS_NAME', 'W4 Internal Link Shortcode' ) ;
 define( 'W4ILS_SLUG', strtolower(str_replace(' ', '-', W4ILS_NAME ))) ;
 
