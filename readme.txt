@@ -5,15 +5,20 @@ Donate link: http://w4dev.com/
 Tags: links, shortcode, post links, page links, category links, author links
 Requires at least: 2.9
 Tested up to: 3.0.3
-Stable tag: 1.2
+Stable tag: 1.3
 
 Wordpress plugin for putting internal links with shortcode..
 
 == Description ==
-Now you can easily embed your wordpress sites internal links (of post,page,category,author) in post,page or category description pages. Just write the appropriate shortcode,and you are on. No need to update these links whenever you make any changes to the real link location.
+Now you can easily embed your wordpress sites internal links (of post, page ,category, author) in post content, page content or category description area. Just write the appropriate shortcode, and you are done. No need to update these links whenever you make any changes to the real link location.
 
+<a href="http://w4dev.com/w4-plugin/w4-internal-link-shortcode/">Let us know your thought</a>.
+
+Add link from other blog of a network( V.1.3 ) by blog id. use <code>blog_id</code> attribute to do that. This feature only supports for post link with <code>id</code>, not <code>name</code> or <code>slug</code>. Example: <pre><code>[intlink type="post" id="2" blog_id="3"]</code></pre>
+This will generate link for post id 2 from the blog having id 3.
 
 = Upgrade Notice =
+* Link to a post from another blog on a multisite network ( V.1.3).
 * New attribute ("target") introduced in Version 1.2. "target" attribute is same as a HTML anchor link target.(Recommend by "Simon")
 * New attribute ("before" and "after") introduced in Version 1.1. These are for putting texts on before or after the link.
 
@@ -26,12 +31,13 @@ Now, if you change your category base to cats, like http://example.com/cats/unca
 
 = Arguments: =
 
-* type = default 'post'. (your link type:post/page/cat/author).
-* id = default ''. (this is the post/page/author/category id based on the type you have chosen).
-* text = default based on the type. Post/Page title for type 'post' or 'page', Category name for 'cat', author display name for 'author'. (the text to show inside the link).
+* blog_id = default 'null'. (Show link from another blog on same network)
+* type = default 'post'. (Your link type:post/page/cat/author).
+* id = default ''. (This is the post/page/author/category id based on the type you have chosen).
+* text = default based on the type. Post/Page title for type 'post' or 'page', Category name for 'cat', author display name for 'author'. ( the text to show inside the link).
 * name = default ''. (Name of the link item object. Ex: "Uncategorized" for category Uncategorized, "Hello world" for the post Hello world).
 * slug = default ''. (Slug of the link item object. Ex: "hello-world" for the post Hello world).
-* class = default 'w4ils_link'. (A HTML class for the link element "a").
+* class = default 'w4_internal_link'. (A HTML class for the link element "a").
 * before = default ''. (Put text or html element before the link).
 * after = default ''. (Put text or html element after the link).
 
@@ -56,10 +62,10 @@ Parameters:
 * "b|blank|new|another|out|yes" for target parameter "_blank"
 
 
---We have added similar attributes and parameters to give you a result at least. Please try using appropriate attributes and parameters.--
+-- We have added similar attributes and parameters to give you a result at least. Please try using appropriate attributes and parameters. --
 
 
-Please let us know if you are unable to use/manage this plugin or if you have some suggestions to improve this plugin.
+If you are unable to use/manage this plugin or if you have some suggestions to improve this plugin <a href="http://w4dev.com/w4-plugin/w4-internal-link-shortcode/">Contact us</a>.
 
 
 == Installation ==
@@ -80,17 +86,19 @@ New attribute ("before" and "after") introduced for putting texts on before or a
 
 
 == Upgrade Notice ==
-= 1.2 =
-New attribute ("target") introduced in Version 1.2. "target" attribute is same as a HTML anchor link target.(Recommend by "Simon")
 = 1.1 =
 New attribute ("before" and "after") introduced for putting texts on before or after the link.
-
+= 1.2 =
+New attribute ("target") introduced in Version 1.2. "target" attribute is same as a HTML anchor link target.(Recommend by "Simon")
+= 1.3 =
+* Link to a post from another blog on a multisite network.
 
 == Usages ==
 = Use shortcode "intlink" to put a link. =
 
 = Arguments: =
 
+* blog_id = default 'null'. (Show link from another blog on same network)
 * type = default 'post'. (your link type:post/page/cat/author).
 * id = default ''. (this is the post/page/author/category id based on the type you have chosen).
 * text = default based on the type. Post/Page title for type 'post' or 'page', Category name for 'cat', author display name for 'author'. (the text to show inside the link).
