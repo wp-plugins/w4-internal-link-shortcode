@@ -7,7 +7,7 @@ Requires at least: 2.9
 Tested up to: 3.0.3
 Stable tag: 1.3
 
-Wordpress plugin for putting internal links with shortcode..
+Wordpress plugin for putting internal links with shortcode. Support posts link from another blog of same network.
 
 == Description ==
 Now you can easily embed your wordpress sites internal links (of post, page ,category, author) in post content, page content or category description area. Just write the appropriate shortcode, and you are done. No need to update these links whenever you make any changes to the real link location.
